@@ -83,7 +83,7 @@ namespace ParseBK
                         IList<IWebElement> listaBetow = tablicaZakladow.FindElements(By.CssSelector("[data-odds-id]"));
                         Console.WriteLine(listaBetow[2].GetAttribute("data-odds-id"));
                         Console.WriteLine(listaBetow[2].GetAttribute("onclick"));
-                        Console.WriteLine(listaBetow[2].GetAttribute(By.XPath("a[onclick *= '12345678901234567890123456789123_12']").ToString()));
+                        Console.WriteLine(listaBetow[2].GetAttribute(By.XPath("//*[@odds_value]").ToString()));
 
                         Console.Write("haha");
                     }
