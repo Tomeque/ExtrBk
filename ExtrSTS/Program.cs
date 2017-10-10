@@ -76,15 +76,20 @@ namespace ParseBK
 
                         var wait2 = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
                         wait2.Until(ExpectedConditions.ElementToBeClickable(By.ClassName("btn-primary")));
-                        System.Threading.Thread.Sleep(1000);
+                        System.Threading.Thread.Sleep(5000);
 
                         //wyodrebnij tablicę z zakladami
-                        IWebElement tablicaZakladow = Driver.FindElement(By.ClassName("bet_tab"));
+                        IWebElement tablicaZakladow = Driver.FindElement(By.Id("offerTables"));
                         IList<IWebElement> listaBetow = tablicaZakladow.FindElements(By.CssSelector("[data-odds-id]"));
+                        //Console.Write(listaBetow[5].Text);
                         foreach (var bet in listaBetow)
                         {
                             //bet.GetAttribute("data-odds-id"); //id betu
-                            string[] listaBetProperties = bet.GetAttribute("onclick").Split(',');
+                            string listaBetProperties = bet.GetAttribute("onclick");
+                            //var number = listaBetProperties.IndexOf("oppty_info_number\":\"");
+                            var h1 = listaBetProperties.IndexOf("id_odds");
+                            var h2 = listaBetProperties.IndexOf("oppty_info_number");
+                            string oppty_info_number = listaBetProperties.Substring(listaBetProperties.IndexOf("oppty_info_number ") + 20, listaBetProperties.IndexOf("\", \"id_odds\":\"") - listaBetProperties.IndexOf("oppty_info_number")  - 25);
                         }
 
                         Console.Write("haha");
