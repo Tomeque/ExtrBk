@@ -64,7 +64,7 @@ namespace ParseBK
                 {
                     IWebElement LinkRozgrywka = Driver.FindElement(By.LinkText(rozgrywkaNazwa));
                     if (rozgrywkaNazwa != "")
-                    { 
+                    {
                         LinkRozgrywka.Click();
 
                         var wait1 = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
@@ -81,9 +81,11 @@ namespace ParseBK
                         //wyodrebnij tablicę z zakladami
                         IWebElement tablicaZakladow = Driver.FindElement(By.ClassName("bet_tab"));
                         IList<IWebElement> listaBetow = tablicaZakladow.FindElements(By.CssSelector("[data-odds-id]"));
-                        Console.WriteLine(listaBetow[2].GetAttribute("data-odds-id"));
-                        Console.WriteLine(listaBetow[2].GetAttribute("onclick"));
-                        Console.WriteLine(listaBetow[2].GetAttribute(By.XPath("td[onclick]").ToString()));
+                        foreach (var bet in listaBetow)
+                        {
+                            //bet.GetAttribute("data-odds-id"); //id betu
+                            string[] listaBetProperties = bet.GetAttribute("onclick").Split(',');
+                        }
 
                         Console.Write("haha");
                     }
