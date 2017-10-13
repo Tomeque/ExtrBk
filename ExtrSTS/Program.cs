@@ -91,6 +91,9 @@ namespace ParseBK
                             var h2 = listaBetProperties.IndexOf("oppty_info_number");
                             string oppty_info_number = listaBetProperties.Substring(listaBetProperties.IndexOf("oppty_info_number") + 20, listaBetProperties.IndexOf("id_odds") - listaBetProperties.IndexOf("oppty_info_number")  - 23);
                             string odds_value = listaBetProperties.Substring(listaBetProperties.IndexOf("odds_value") + 13, listaBetProperties.IndexOf("id_opportunity") - listaBetProperties.IndexOf("odds_value") - 16);
+                            string id_opportunity = listaBetProperties.Substring(listaBetProperties.IndexOf("id_opportunity") + 17, listaBetProperties.IndexOf("match_name") - listaBetProperties.IndexOf("id_opportunity") - 20);
+                            string match_name = listaBetProperties.Substring(listaBetProperties.IndexOf("match_name") + 13, listaBetProperties.IndexOf("tip_name_formated") - listaBetProperties.IndexOf("match_name") - 16);
+                            string oppty_type_name = listaBetProperties.Substring(listaBetProperties.IndexOf("oppty_type_name") + 18, listaBetProperties.IndexOf("})") - listaBetProperties.IndexOf("oppty_type_name") - 19);
                         }
 
                         Console.Write("haha");
