@@ -80,20 +80,35 @@ namespace ParseBK
 
                         //wyodrebnij tablicę z zakladami
                         IWebElement tablicaZakladow = Driver.FindElement(By.Id("offerTables"));
+                        //IList<IWebElement> listaShadowBoxSBO = tablicaZakladow.FindElements(By.ClassName("shadow_box support_bets_offer"));
+                        //foreach (var shadowBox in listaShadowBoxSBO)
+                        //{
+                        //    IWebElement naglowekZwijany = shadowBox.FindElement(By.TagName("h2"));
+                        //}
                         IList<IWebElement> listaBetow = tablicaZakladow.FindElements(By.CssSelector("[data-odds-id]"));
                         //Console.Write(listaBetow[5].Text);
                         foreach (var bet in listaBetow)
                         {
-                            //bet.GetAttribute("data-odds-id"); //id betu
+                            string data_odds_id = bet.GetAttribute("data-odds-id"); //id betu
                             string listaBetProperties = bet.GetAttribute("onclick");
                             //var number = listaBetProperties.IndexOf("oppty_info_number\":\"");
-                            var h1 = listaBetProperties.IndexOf("id_odds");
-                            var h2 = listaBetProperties.IndexOf("oppty_info_number");
-                            string oppty_info_number = listaBetProperties.Substring(listaBetProperties.IndexOf("oppty_info_number") + 20, listaBetProperties.IndexOf("id_odds") - listaBetProperties.IndexOf("oppty_info_number")  - 23);
+                            //var h1 = listaBetProperties.IndexOf("id_odds");
+                            //var h2 = listaBetProperties.IndexOf("oppty_info_number");
+                            string oppty_info_number = listaBetProperties.Substring(listaBetProperties.IndexOf("oppty_info_number") + 20, listaBetProperties.IndexOf("id_odds") - listaBetProperties.IndexOf("oppty_info_number") - 23);
                             string odds_value = listaBetProperties.Substring(listaBetProperties.IndexOf("odds_value") + 13, listaBetProperties.IndexOf("id_opportunity") - listaBetProperties.IndexOf("odds_value") - 16);
                             string id_opportunity = listaBetProperties.Substring(listaBetProperties.IndexOf("id_opportunity") + 17, listaBetProperties.IndexOf("match_name") - listaBetProperties.IndexOf("id_opportunity") - 20);
                             string match_name = listaBetProperties.Substring(listaBetProperties.IndexOf("match_name") + 13, listaBetProperties.IndexOf("tip_name_formated") - listaBetProperties.IndexOf("match_name") - 16);
                             string oppty_type_name = listaBetProperties.Substring(listaBetProperties.IndexOf("oppty_type_name") + 18, listaBetProperties.IndexOf("})") - listaBetProperties.IndexOf("oppty_type_name") - 19);
+
+                            //IWebElement uprzedniThead = Driver.FindElement(By.XPath("//td[@data-odds-id=" + data_odds_id + "]//.."));
+                            //IWebElement uprzedniThead = tablicaZakladow.FindElement(By.XPath("//td[@data-odds-id=" + data_odds_id + "]/ancestor"));
+                            //IList<IWebElement> uprzedniThead = tablicaZakladow.FindElements(By.XPath("ancestor::thead"));
+                            //IList<IWebElement> uprzedniThead = tablicaZakladow.FindElements(By.XPath("//self"));
+                            //IWebElement uprzedniThead = tablicaZakladow.FindElement(By.XPath("//thead"));
+
+                            //IList<IWebElement> uprzedniThead = tablicaZakladow.FindElements(By.XPath("//..//td[@data-odds-id=" + data_odds_id + "]"));
+                            //IList<IWebElement> uprzedniThead = tablicaZakladow.FindElements(By.XPath("//parent[.//td[@data-odds-id=" + data_odds_id + "]]"));
+                            IList<IWebElement> uprzedniThead = tablicaZakladow.FindElements(By.XPath("/parent[.//td[@data-odds-id=" + data_odds_id + "]]"));
                         }
 
                         Console.Write("haha");
