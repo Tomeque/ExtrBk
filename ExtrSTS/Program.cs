@@ -85,8 +85,8 @@ namespace ParseBK
                         IList<IWebElement> listaShadowBoxSBO = tablicaZakladow.FindElements(By.XPath("//div[starts-with(@class, 'shadow_box support_bets_offer')]"));
                         foreach (var shadowBox in listaShadowBoxSBO)
                         {
-                            IWebElement naglowekZwijany = shadowBox.FindElement(By.TagName("h2"));
-                            string h2_header = naglowekZwijany.Text;
+                            IWebElement h2_header = shadowBox.FindElement(By.TagName("h2"));
+                            string naglowekZwijany = h2_header.Text;
 
                             //IWebElement naglowekOpisowy = shadowBox.FindElement(By.TagName("thead"));
                             //string thead_header = naglowekOpisowy.Text;
@@ -108,7 +108,7 @@ namespace ParseBK
                                     string match_name = listaBetProperties.Substring(listaBetProperties.IndexOf("match_name") + 13, listaBetProperties.IndexOf("tip_name_formated") - listaBetProperties.IndexOf("match_name") - 16);
                                     string oppty_type_name = listaBetProperties.Substring(listaBetProperties.IndexOf("oppty_type_name") + 18, listaBetProperties.IndexOf("})") - listaBetProperties.IndexOf("oppty_type_name") - 19);
 
-                                    string sqConnectionString = "DataSource=mydatabase.db;";
+                                    string sqConnectionString = "DataSource=DBTypy.db;";
                                     SQLiteConnection myConn = new SQLiteConnection(sqConnectionString);
                                     string myInsertQuery = "INSERT INTO DEPT VALUES (50,'Development','Philadelphia')";
                                     SQLiteCommand sqCommand = new SQLiteCommand(myInsertQuery);
