@@ -108,8 +108,20 @@ namespace ParseBK
                                     string match_name = listaBetProperties.Substring(listaBetProperties.IndexOf("match_name") + 13, listaBetProperties.IndexOf("tip_name_formated") - listaBetProperties.IndexOf("match_name") - 16);
                                     string oppty_type_name = listaBetProperties.Substring(listaBetProperties.IndexOf("oppty_type_name") + 18, listaBetProperties.IndexOf("})") - listaBetProperties.IndexOf("oppty_type_name") - 19);
 
-
-                                    //SQLiteConnection m_dbConnection;
+                                    string sqConnectionString = "DataSource=mydatabase.db;";
+                                    SQLiteConnection myConn = new SQLiteConnection(sqConnectionString);
+                                    string myInsertQuery = "INSERT INTO DEPT VALUES (50,'Development','Philadelphia')";
+                                    SQLiteCommand sqCommand = new SQLiteCommand(myInsertQuery);
+                                    sqCommand.Connection = myConn;
+                                    myConn.Open();
+                                    try
+                                    {
+                                        sqCommand.ExecuteNonQuery();
+                                    }
+                                    finally
+                                    {
+                                        myConn.Close();
+                                    }
                                 }
                             }
 
@@ -150,4 +162,6 @@ namespace ParseBK
             //Console.Write("haha");
         }
     }
+
+
 }
