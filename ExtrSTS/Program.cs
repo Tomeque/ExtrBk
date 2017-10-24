@@ -93,9 +93,11 @@ namespace ParseBK
 
                             IList<IWebElement> naglowekPlusRekordy = shadowBox.FindElements(By.XPath("//td[@data-odds-id]|//thead"));
 
+                            string naglowekOpisowy = "";
+
                             foreach (var naglowekLubRekord in naglowekPlusRekordy)
                             {
-                                if (naglowekLubRekord.TagName == "thead") {string naglowekOpisowy = naglowekLubRekord.Text;}
+                                if (naglowekLubRekord.TagName == "thead") {naglowekOpisowy = naglowekLubRekord.Text;}
 
                                 if (naglowekLubRekord.TagName == "td")
                                 {
@@ -110,7 +112,11 @@ namespace ParseBK
 
                                     string sqConnectionString = "DataSource=DBTypy.db;";
                                     SQLiteConnection myConn = new SQLiteConnection(sqConnectionString);
-                                    string myInsertQuery = "INSERT INTO DEPT VALUES (50,'Development','Philadelphia')";
+                                    string myInsertQuery = "INSERT INTO `Typy`(`Ident`,`CzasZapisu`,`NaglowekZwijany`,`NaglowekOpisowy`,`data_odds_id`,`oppty_info_number`,`odds_value`,`id_opportunity`,`match_name`,`oppty_type_name`) " +
+                                        "VALUES (1,'czas','" + naglowekZwijany + "','" + naglowekOpisowy + "','"+ data_odds_id + "',"+ oppty_info_number + ","+ odds_value + ","+ id_opportunity + ",'"+ match_name + "','"+ oppty_type_name + "')";
+
+                                    Console.Write(myInsertQuery);
+
                                     SQLiteCommand sqCommand = new SQLiteCommand(myInsertQuery);
                                     sqCommand.Connection = myConn;
                                     myConn.Open();
