@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data.xlsx" />
     <None Include="DBTypy.db" />
     <None Include="packages.config" />
   </ItemGroup>
